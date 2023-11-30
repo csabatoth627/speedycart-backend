@@ -1,28 +1,28 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import Order from "../models/orderModel.js";
 
-const addOrderItems = asyncHandler(async(res,req) => {
-    res.send("Add order items")
+const addOrderItems = asyncHandler(async (req, res) => {
+    res.send("Add order items");
 });
 
-const getMyOrders = asyncHandler(async(res,req) => {
-    res.send("Get my orders")
+const getMyOrders = asyncHandler(async (req, res) => {
+    res.send("Get my orders");
 });
 
-const getOrderById = asyncHandler(async(res,req) => {
-    res.send("Get order by id")
+const getOrderById = asyncHandler(async (req, res) => {
+    res.send("Get order by id");
 });
 
-const updateOrderToPaid = asyncHandler(async(res,req) => {
-    res.send("Update order to paid")
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+    res.send("Update order to paid");
 });
 
-const updateOrderToDelivered = asyncHandler(async(res,req) => {
-    res.send("Update order to delivered")
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+    res.send("Update order to delivered");
 });
 
-const getOrders = asyncHandler(async(res,req) => {
-    res.send("Get orders")
+const getOrders = asyncHandler(async (req, res) => {
+    res.send("Get orders");
 });
 
 export{
