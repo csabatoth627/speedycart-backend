@@ -39,12 +39,12 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
 
 const getMyOrders = asyncHandler(async (req, res) => {
-    const orders = Order.find({user:req.user._id});
+    const orders = await Order.find({user:req.user._id});
     res.status(200).json(orders);
 });
 
 const getOrderById = asyncHandler(async (req, res) => {
-    const order = Order.findById(req.params.id).populate('user','name email');
+    const order = await Order.findById(req.params.id).populate('user','name email');
 
     if(order){
         res.status(200).json(order)
