@@ -107,7 +107,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 const getUsers = asyncHandler(async (req, res) => {
-    res.send('Get users')
+    const users = await User.find({})
+    res.status(200).json(users);
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
