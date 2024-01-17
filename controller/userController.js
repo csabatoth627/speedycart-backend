@@ -112,7 +112,7 @@ const getUsers = asyncHandler(async (req, res) => {
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-    const user = User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
 
     if (user) {
         if (user.isAdmin) {
@@ -129,30 +129,38 @@ const deleteUser = asyncHandler(async (req, res) => {
 });
 
 const getUserByID = asyncHandler(async (req, res) => {
-    res.send('Get user by id')
+    const user = await User.findById(req.params.id).select('-password');
+
+    if (user) {
+        res.status(200).json(user)
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
 });
 
 const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
 
-    if (user){
+    if (user) {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         user.isAdmin = Boolean(req.body.isAdmin);
 
-        const updatedUser = await user.save()
+        const updatedUser = await user.save();
 
         res.status(200).json({
-            _id: updateUser._id,
-            name: updateUser.name,
-            email: updateUser.email,
-            isAdmin: updateUser.isAdmin,
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
         });
     } else {
         res.status(404);
-        throw new Error('User not found')
+        throw new Error('User not found');
     }
 });
+
 
 export {
     authUser,
